@@ -2,11 +2,18 @@ local M = {}
 
 local js_ts_debug_script = {
   name = "Run npm script",
-  type = "node",
-  request = "attach",
-  skilpFiles = { "<node_internals>/**" },
-  console = "internalConsole",
+  type = "pwa-node",
+  request = "launch",
+  cwd = "${workspaceFolder}",
+  rootPath = "${workspaceFolder}",
+  sourceMaps = true,
+  skilpFiles = { "<node_internals>/**", "node_modules/**" },
+  protocol = "inspector",
+  console = "integratedTerminal",
+  runtimeExecutable = "yarn",
+  runtimeArgs = {}
 }
+
 
 local js_ts_debug_current_file = {
   name = "Current File",

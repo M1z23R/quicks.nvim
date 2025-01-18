@@ -16,10 +16,8 @@ local function debug_npm_script()
     end
 
     local config = configs.js_ts_debug_script
-    config.before = function()
-      vim.fn.jobstart("npm run " .. selected.value)
-    end
-    require("dap").run(config) -- npm script in package.json must: node -r ts-node/register --inspect filename
+    config.runtimeArgs = { selected.value }
+    require("dap").run(config)
   end)
 end
 
