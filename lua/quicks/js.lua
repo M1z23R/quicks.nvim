@@ -55,7 +55,7 @@ local function debug(quick)
     if selected == "Run" then
       run_and_debug()
     elseif selected == "Attach" then
-      require("dap").run(configs.js_ts_attach_config)
+      require("dap").run(configs.attach)
     else
       vim.notify("Debug configuration selection cancelled", vim.log.levels.INFO)
     end
