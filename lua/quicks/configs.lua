@@ -10,7 +10,7 @@ local js_ts_debug_script = {
   skilpFiles = { "<node_internals>/**", "node_modules/**" },
   protocol = "inspector",
   console = "integratedTerminal",
-  runtimeExecutable = "yarn",
+  runtimeExecutable = "npm",
   runtimeArgs = {}
 }
 

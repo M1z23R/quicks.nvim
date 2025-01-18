@@ -16,7 +16,7 @@ local function debug_npm_script()
     end
 
     local config = configs.js_ts_debug_script
-    config.runtimeArgs = { selected.value }
+    config.runtimeArgs = { "run", selected.value }
     require("dap").run(config)
   end)
 end
@@ -29,7 +29,7 @@ local function run_and_debug()
     end,
   }, function(selected)
     if selected == "Current File" then
-      require("dap").run(configs.js_ts_debug_current_file)
+      require("dap").run(configs.current_file)
     elseif selected == "Npm Script" then
       debug_npm_script()
     else
