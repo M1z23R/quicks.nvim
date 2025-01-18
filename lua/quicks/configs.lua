@@ -22,6 +22,7 @@ local js_ts_debug_current_file = {
   name = "Debug Current File",
   type = "pwa-node",
   request = "launch",
+  cwd = "${workspaceFolder}",
   sourceMaps = true,
   skilpFiles = { "<node_internals>/**/*.js", "node_modules/**/*.js" },
   resolveSourceMapLocations = {

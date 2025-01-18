@@ -11,7 +11,9 @@ local function prompt_commit_message(callback)
 end
 
 local function execute_git_command(cmd, success_message, failure_message)
-  vim.fn.jobstart(table.concat(cmd, " "), {
+  local joined_cmd = table.concat(cmd, "")
+  print(joined_cmd)
+  vim.fn.jobstart(joined_cmd, {
     on_exit = function(_, code)
       if code == 0 then
         vim.notify(success_message, vim.log.levels.INFO)
@@ -71,7 +73,7 @@ local function prompt()
         stage_commit_push = function()
           prompt_commit_message(function(commit_message)
             execute_git_command(
-              { "git", "add", ".", "&&", "git", "commit", "-m", "'" .. commit_message .. "'", "&&", "git", "push" },
+              { "git", "add", ".", "&&", "git", "commit", "-m", "\"" .. commit_message .. "\"", "&&", "git", "push" },
               "Changes staged, committed, and pushed.",
               "Failed to complete stage, commit, and push."
             )
