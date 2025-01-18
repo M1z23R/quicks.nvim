@@ -31,6 +31,7 @@ local js_ts_debug_current_file = {
   },
   protocol = "inspector",
   console = "integratedTerminal",
+  runtimeExecutable = "node",
   runtimeArgs = { "-r", "ts-node/register" },
   args = { "--inspect", "${file}" },
 }

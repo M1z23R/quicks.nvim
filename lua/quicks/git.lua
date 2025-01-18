@@ -11,7 +11,7 @@ local function prompt_commit_message(callback)
 end
 
 local function execute_git_command(cmd, success_message, failure_message)
-  local joined_cmd = table.concat(cmd, "")
+  local joined_cmd = table.concat(cmd, " ")
   print(joined_cmd)
   vim.fn.jobstart(joined_cmd, {
     on_exit = function(_, code)
