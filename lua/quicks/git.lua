@@ -11,7 +11,7 @@ local function prompt_commit_message(callback)
 end
 
 local function execute_git_command(cmd, success_message, failure_message)
-  vim.fn.jobstart(cmd, {
+  vim.fn.jobstart(table.concat(cmd, " "), {
     on_exit = function(_, code)
       if code == 0 then
         vim.notify(success_message, vim.log.levels.INFO)
