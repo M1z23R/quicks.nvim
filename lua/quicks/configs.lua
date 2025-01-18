@@ -8,6 +8,10 @@ local js_ts_debug_script = {
   rootPath = "${workspaceFolder}",
   sourceMaps = true,
   skilpFiles = { "<node_internals>/**/*.js", "node_modules/**/*.js" },
+  resolveSourceMapLocations = {
+    "${workspaceFolder}/**",
+    "!**/node_modules/**"
+  },
   protocol = "inspector",
   console = "integratedTerminal",
   runtimeExecutable = "npm",
@@ -22,6 +26,10 @@ local js_ts_debug_current_file = {
   rootPath = "${workspaceFolder}",
   sourceMaps = true,
   skilpFiles = { "<node_internals>/**/*.js", "node_modules/**/*.js" },
+  resolveSourceMapLocations = {
+    "${workspaceFolder}/**",
+    "!**/node_modules/**"
+  },
   protocol = "inspector",
   console = "integratedTerminal",
   runtimeArgs = { "-r", "ts-node/register" },

@@ -71,7 +71,7 @@ local function prompt()
         stage_commit_push = function()
           prompt_commit_message(function(commit_message)
             execute_git_command(
-              { "git", "add", ".", "&&", "git", "commit", "-m", commit_message, "&&", "git", "push" },
+              { "git", "add", ".", "&&", "git", "commit", "-m", "'" .. commit_message .. "'", "&&", "git", "push" },
               "Changes staged, committed, and pushed.",
               "Failed to complete stage, commit, and push."
             )
