@@ -36,7 +36,7 @@ local js_ts_debug_current_file = {
 
 local js_ts_attach_config = {
   name = "Run npm script",
-  type = "node",
+  type = "pwa-node",
   request = "attach",
   skilpFiles = { "<node_internals>/**/*.js", "node_modules/**/*.js" },
   resolveSourceMapLocations = {
