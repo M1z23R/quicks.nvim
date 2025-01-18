@@ -13,7 +13,6 @@ local js_ts_debug_script = {
     "!**/node_modules/**"
   },
   protocol = "inspector",
-  console = "integratedTerminal",
   runtimeExecutable = "npm",
   runtimeArgs = {}
 }
@@ -30,10 +29,10 @@ local js_ts_debug_current_file = {
     "!**/node_modules/**"
   },
   protocol = "inspector",
-  console = "integratedTerminal",
   runtimeExecutable = "ts-node-dev",
-  args = { "--respawn", "--transpile-only", "--pretty", "${workspaceFolder}/${file}" },
+  runtimeArgs = { "--respawn", "--transpile-only", "--pretty", "${file}" },
 }
+
 
 local js_ts_attach_config = {
   name = "Run npm script",
