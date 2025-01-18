@@ -66,5 +66,3 @@ return {
 ```
 
 ---
-
-Testing plugin
