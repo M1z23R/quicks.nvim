@@ -19,11 +19,10 @@ local js_ts_debug_current_file = {
   name = "Current File",
   type = "pwa-node",
   request = "launch",
-  runtimeArgs = { "-r", "ts-node/register" },
   runtimeExecutable = "node",
+  runtimeArgs = { "-r", "ts-node/register" },
   args = { "--inspect", "${file}" },
   skipFiles = { "node_modules/**" },
-  restart = true
 }
 
 local js_ts_attach_config = {
