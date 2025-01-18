@@ -14,16 +14,29 @@ local js_ts_debug_script = {
   runtimeArgs = {}
 }
 
-
 local js_ts_debug_current_file = {
-  name = "Current File",
+  name = "Debug Current File",
   type = "pwa-node",
   request = "launch",
-  runtimeExecutable = "node",
+  cwd = "${workspaceFolder}",
+  rootPath = "${workspaceFolder}",
+  sourceMaps = true,
+  skilpFiles = { "<node_internals>/**", "node_modules/**" },
+  protocol = "inspector",
+  console = "integratedTerminal",
   runtimeArgs = { "-r", "ts-node/register" },
   args = { "--inspect", "${file}" },
-  skipFiles = { "node_modules/**" },
 }
+
+--local js_ts_debug_current_file = {
+--  name = "Current File",
+--  type = "pwa-node",
+--  request = "launch",
+--  runtimeExecutable = "node",
+--  runtimeArgs = { "-r", "ts-node/register" },
+--  args = { "--inspect", "${file}" },
+--  skipFiles = { "node_modules/**" },
+--}
 
 local js_ts_attach_config = {
   name = "Run npm script",
