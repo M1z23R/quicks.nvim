@@ -17,7 +17,7 @@ local js_ts_debug_script = {
 
 local js_ts_debug_current_file = {
   name = "Current File",
-  type = "node",
+  type = "pwa-node",
   request = "launch",
   runtimeArgs = { "-r", "ts-node/register" },
   runtimeExecutable = "node",
