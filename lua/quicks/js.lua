@@ -1,7 +1,7 @@
 local M = {}
 
-local utils = require("pickers.utility")
-local configs = require("pickers.configs")
+local utils = require("quicks.utility")
+local configs = require("quicks.configs")
 
 local function debug_npm_script()
   vim.ui.select(utils.get_package_scripts(), {

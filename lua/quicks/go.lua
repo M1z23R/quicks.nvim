@@ -1,6 +1,6 @@
 local M = {}
 
-local configs = require("pickers.configs")
+local configs = require("quicks.configs")
 
 local function debug()
   require("dap").run(configs.go)

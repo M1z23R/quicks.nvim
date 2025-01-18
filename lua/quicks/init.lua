@@ -1,9 +1,9 @@
 local M = {}
 
-local go = require("pickers.go")
-local js = require("pickers.js")
-local git = require("pickers.git")
-local utils = require("pickers.utility")
+local go = require("quicks.go")
+local js = require("quicks.js")
+local git = require("quicks.git")
+local utils = require("quicks.utility")
 
 local function start_debug(env, quick)
   if env == "unknown" then
@@ -11,26 +11,22 @@ local function start_debug(env, quick)
     return
   elseif env == "go" then
     go.debug()
-  elseif env == "javascript" or env == "typescript" then
+  elseif env == "js" then
     js.debug(quick)
-  elseif env == "git" then
-    git.prompt()
   end
 end
 
 local function run_in_tmux(env)
   if env == "go" then
     go.run()
-  elseif env == "git" then
-    git.prompt()
-  else
+  elseif env == "js" then
     js.run()
   end
 end
 
 local function run_or_debug()
   vim.ui.select(
-    { "Run in tmux", "Debug Current File", "Debug Advanced" },
+    { "Run in tmux", "Debug Current File", "Debug Advanced", "Quick git" },
     {
       prompt = "Choose an action:",
       format_item = function(item)
@@ -54,6 +50,9 @@ local function run_or_debug()
         ["Debug Advanced"] = function()
           start_debug(env)
         end,
+        ["Quick git"] = function()
+          git.prompt()
+        end,
       }
 
       local execute = actions[selection]
@@ -65,8 +64,6 @@ local function run_or_debug()
     end
   )
 end
-
-vim.keymap.set("n", "<leader>tt", run_or_debug, { desc = "Run or Debug" })
 
 M.run_or_debug = run_or_debug
 return M

@@ -21,9 +21,7 @@ local function detect_project_type()
 
   local project_types = {
     { type = "go",         file = "go.mod" },
-    { type = "typescript", file = "tsconfig.json" },
-    { type = "javascript", file = "package.json" },
-    { type = "python",     file = "requirements.txt" },
+    { type = "js", file = "package.json" },
     { type = "git",        file = ".git" },
   }
 
