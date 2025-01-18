@@ -1,4 +1,3 @@
-
 # quicks.nvim
 
 **quicks.nvim** is a Neovim configuration that provides an optimized setup with a focus on speed, usability, and ease of use. It integrates a set of essential plugins and features, including intelligent code completion, syntax highlighting, and file navigation, to enhance your Neovim experience.
