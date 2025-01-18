@@ -40,7 +40,7 @@ end
 
 local function debug(quick)
   if quick then
-    require("dap").run(configs.js_ts_debug_current_file)
+    require("dap").run(configs.current_file)
     return
   end
 
