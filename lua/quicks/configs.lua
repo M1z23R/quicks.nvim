@@ -32,24 +32,18 @@ local js_ts_debug_current_file = {
   protocol = "inspector",
   console = "integratedTerminal",
   runtimeExecutable = "ts-node-dev",
-  runtimeArgs = { "--respawn", "--transpile-only", "--pretty", "${file}" },
+  args = { "--respawn", "--transpile-only", "--pretty", "${workspaceFolder}/${file}" },
 }
-
---local js_ts_debug_current_file = {
---  name = "Current File",
---  type = "pwa-node",
---  request = "launch",
---  runtimeExecutable = "node",
---  runtimeArgs = { "-r", "ts-node/register" },
---  args = { "--inspect", "${file}" },
---  skipFiles = { "node_modules/**" },
---}
 
 local js_ts_attach_config = {
   name = "Run npm script",
   type = "node",
   request = "attach",
-  skilpFiles = { "<node_internals>/**" },
+  skilpFiles = { "<node_internals>/**/*.js", "node_modules/**/*.js" },
+  resolveSourceMapLocations = {
+    "${workspaceFolder}/**",
+    "!**/node_modules/**"
+  },
 }
 
 
