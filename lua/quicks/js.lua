@@ -17,6 +17,7 @@ local function debug_npm_script()
 
     local config = configs.js_ts_debug_script
     config.runtimeArgs = { "run", selected.value }
+    print("Starting???")
     require("dap").run(config)
   end)
 end
