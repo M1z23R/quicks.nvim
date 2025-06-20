@@ -3,6 +3,7 @@ local M = {}
 local scan = require("plenary.scandir")
 local Path = require("plenary.path")
 local dap = require("dap")
+local dapui = require("dapui")
 
 local function get_cmd_binaries()
   local entries = scan.scan_dir(vim.fn.getcwd() .. "/cmd", {
@@ -53,6 +54,7 @@ local function debug()
         program = vim.fn.getcwd() .. "/" .. selected.value,
       })
     end
+    dapui.open()
   end)
 end
 

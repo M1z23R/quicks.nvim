@@ -1,6 +1,8 @@
 local M = {}
 
 local utils = require("quicks.utility")
+local dap = require("dap")
+local dapui = require("dapui")
 
 local attach_config = {
   name = "Run npm script",
@@ -14,7 +16,8 @@ local attach_config = {
 }
 
 local function debug()
-  require("dap").run(attach_config)
+  dap.run(attach_config)
+  dapui.open()
 end
 
 local function run_npm_script()
