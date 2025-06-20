@@ -1,11 +1,62 @@
 local M = {}
 
-local configs = require("quicks.configs")
+local scan = require("plenary.scandir")
+local Path = require("plenary.path")
+local dap = require("dap")
 
-local function debug()
-  require("dap").run(configs.go)
+local function get_cmd_binaries()
+  local entries = scan.scan_dir(vim.fn.getcwd() .. "/cmd", {
+    only_dirs = true,
+    depth = 1,
+  })
+
+  for i, path in ipairs(entries) do
+    entries[i] = Path:new(path):make_relative(vim.fn.getcwd())
+  end
+
+  return entries
 end
 
+local function debug()
+  local binaries = get_cmd_binaries()
+  local items = {
+    { name = "Debug Current File", value = "file" },
+  }
+
+  for _, bin in ipairs(binaries) do
+    table.insert(items, { name = "Debug " .. bin, value = bin })
+  end
+
+  vim.ui.select(items, {
+    prompt = "Select debug target",
+    format_item = function(item)
+      return item.name
+    end,
+  }, function(selected)
+    if not selected then
+      vim.notify("Debug target selection cancelled", vim.log.levels.INFO)
+      return
+    end
+
+    if selected.value == "file" then
+      dap.run({
+        type = "go",
+        name = "Debug Current File",
+        request = "launch",
+        program = vim.fn.expand("%:p"),
+      })
+    else
+      dap.run({
+        type = "go",
+        name = "Debug " .. selected.value,
+        request = "launch",
+        program = vim.fn.getcwd() .. "/" .. selected.value,
+      })
+    end
+  end)
+end
+
+-- ▶️ Run entry (tmux split)
 local function run()
   vim.ui.select({ { name = "Run Project", value = "." }, { name = "Run File", value = "buffer" } }, {
     prompt = "Project or File",
@@ -17,7 +68,7 @@ local function run()
       local tmux_cmd = "tmux split-window -v 'go run " .. selected.value .. "'"
       vim.fn.system(tmux_cmd)
     else
-      vim.notify("Debug configuration selection cancelled", vim.log.levels.INFO)
+      vim.notify("Run configuration selection cancelled", vim.log.levels.INFO)
     end
   end)
 end
