@@ -4,6 +4,12 @@ local scan = require("plenary.scandir")
 local Path = require("plenary.path")
 local dap = require("dap")
 local dapui = require("dapui")
+local current_file_config = {
+  type = "go",
+  name = "Debug Current File",
+  request = "launch",
+  program = vim.fn.expand("%:p"),
+}
 
 local function get_cmd_binaries()
   local entries = scan.scan_dir(vim.fn.getcwd() .. "/cmd", {
@@ -40,12 +46,7 @@ local function debug()
     end
 
     if selected.value == "file" then
-      dap.run({
-        type = "go",
-        name = "Debug Current File",
-        request = "launch",
-        program = vim.fn.expand("%:p"),
-      })
+      dap.run(current_file_config)
     else
       dap.run({
         type = "go",
