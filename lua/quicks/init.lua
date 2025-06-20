@@ -26,7 +26,7 @@ end
 
 local function run_or_debug()
   vim.ui.select(
-    { "Run in tmux", "Debug Current File", "Debug Advanced", "Quick git" },
+    { "Run in tmux", "Debug Go", "Debug Current File", "Debug Advanced", "Quick git" },
     {
       prompt = "Choose an action:",
       format_item = function(item)
@@ -46,6 +46,9 @@ local function run_or_debug()
         end,
         ["Debug Current File"] = function()
           start_debug(env, true)
+        end,
+        ["Debug Go"] = function()
+          go.debug()
         end,
         ["Debug Advanced"] = function()
           start_debug(env)
