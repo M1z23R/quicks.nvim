@@ -16,26 +16,6 @@ local function get_package_scripts()
   return scripts
 end
 
-local function detect_project_type()
-  local cwd = vim.fn.getcwd()
-
-  local project_types = {
-    { type = "go",         file = "go.mod" },
-    { type = "js", file = "package.json" },
-    { type = "git",        file = ".git" },
-  }
-
-  for _, project in ipairs(project_types) do
-    local filepath = cwd .. "/" .. project.file
-    if vim.loop.fs_stat(filepath) then
-      return project.type
-    end
-  end
-
-  return "unknown"
-end
-
 M.get_package_scripts = get_package_scripts
-M.detect_project_type = detect_project_type
 
 return M

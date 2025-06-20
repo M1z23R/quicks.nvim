@@ -1,49 +1,7 @@
 local M = {}
 
-local js_ts_debug_script = {
-  name = "Run npm script",
-  type = "pwa-node",
-  request = "launch",
-  cwd = "${workspaceFolder}",
-  rootPath = "${workspaceFolder}",
-  sourceMaps = true,
-  skilpFiles = { "<node_internals>/**/*.js", "node_modules/**/*.js" },
-  resolveSourceMapLocations = {
-    "${workspaceFolder}/**",
-    "!**/node_modules/**"
-  },
-  protocol = "inspector",
-  runtimeExecutable = "npm",
-  runtimeArgs = {}
-}
-
-local js_ts_debug_current_file = {
-  name = "Debug Current File",
-  type = "pwa-node",
-  request = "launch",
-  cwd = "${workspaceFolder}",
-  sourceMaps = true,
-  skilpFiles = { "<node_internals>/**/*.js", "node_modules/**/*.js" },
-  resolveSourceMapLocations = {
-    "${workspaceFolder}/**",
-    "!**/node_modules/**"
-  },
-  protocol = "inspector",
-  runtimeExecutable = "ts-node-dev",
-  runtimeArgs = { "--respawn", "--transpile-only", "--pretty", "${file}" },
-}
 
 
-local js_ts_attach_config = {
-  name = "Run npm script",
-  type = "pwa-node",
-  request = "attach",
-  skilpFiles = { "<node_internals>/**/*.js", "node_modules/**/*.js" },
-  resolveSourceMapLocations = {
-    "${workspaceFolder}/**",
-    "!**/node_modules/**"
-  },
-}
 
 
 

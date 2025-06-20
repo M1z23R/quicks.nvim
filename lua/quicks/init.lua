@@ -5,28 +5,10 @@ local js = require("quicks.js")
 local git = require("quicks.git")
 local utils = require("quicks.utility")
 
-local function start_debug(env, quick)
-  if env == "unknown" then
-    vim.notify("Unknown project type", vim.log.levels.INFO)
-    return
-  elseif env == "go" then
-    go.debug()
-  elseif env == "js" then
-    js.debug(quick)
-  end
-end
-
-local function run_in_tmux(env)
-  if env == "go" then
-    go.run()
-  elseif env == "js" then
-    js.run()
-  end
-end
 
 local function run_or_debug()
   vim.ui.select(
-    { "Run in tmux", "Debug Go", "Debug Current File", "Debug Advanced", "Quick git" },
+    { "Run npm script", "Go Debug", "JS/TS Attach", "Quick git" },
     {
       prompt = "Choose an action:",
       format_item = function(item)
@@ -39,19 +21,15 @@ local function run_or_debug()
         return
       end
 
-      local env = utils.detect_project_type()
       local actions = {
-        ["Run in tmux"] = function()
-          run_in_tmux(env)
+        ["Run npm script"] = function()
+          js.run()
         end,
-        ["Debug Current File"] = function()
-          start_debug(env, true)
-        end,
-        ["Debug Go"] = function()
+        ["Go Debug"] = function()
           go.debug()
         end,
-        ["Debug Advanced"] = function()
-          start_debug(env)
+        ["JS/TS Attach"] = function()
+          js.debug()
         end,
         ["Quick git"] = function()
           git.prompt()
