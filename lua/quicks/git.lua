@@ -27,10 +27,11 @@ end
 local function prompt()
   vim.ui.select(
     {
-      { name = "Stage & Commit",         value = "stage_commit" },
-      { name = "Stage all",              value = "git_add" },
+      { name = "Stage, Commit and Push", value = "stage_commit_push" },
       { name = "Quick commit",           value = "quick_commit" },
-      { name = "Stage, Commit and Push", value = "stage_commit_push" }
+      { name = "Stage all",              value = "git_add" },
+      { name = "Stage & Commit",         value = "stage_commit" },
+      { name = "Git pull",               value = "git_pull" },
     },
     {
       prompt = "Quick git",
@@ -78,6 +79,13 @@ local function prompt()
               "Failed to complete stage, commit, and push."
             )
           end)
+        end,
+        git_pull = function()
+          execute_git_command(
+            { "git", "pull" },
+            "Pull completed.",
+            "Pull failed."
+          )
         end,
       }
 
