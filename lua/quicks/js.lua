@@ -46,8 +46,19 @@ local function remove_unused_imports()
   })
 end
 
+local function fix_all()
+  vim.lsp.buf.code_action({
+    apply = true,
+    context = {
+      only = { "source.fixAll.ts" },
+      diagnostics = {},
+    },
+  })
+end
+
 M.run = run_npm_script
 M.debug = debug
 M.remove_unused = remove_unused_imports
+M.fix_all = fix_all
 
 return M

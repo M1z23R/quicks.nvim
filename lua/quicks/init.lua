@@ -8,7 +8,7 @@ local utils = require("quicks.utility")
 
 local function run_or_debug()
   vim.ui.select(
-    { "Run npm script", "Go Debug", "JS/TS Attach", "Remove unused imports", "Quick git" },
+    { "Run npm script", "Go Debug", "JS/TS Attach", "Remove unused imports", "Fix all", "Quick git" },
     {
       prompt = "Choose an action:",
       format_item = function(item)
@@ -33,6 +33,9 @@ local function run_or_debug()
         end,
         ["Remove unused imports"] = function()
           js.remove_unused()
+        end,
+        ["Fix all"] = function()
+          js.fix_all()
         end,
         ["Quick git"] = function()
           git.prompt()
