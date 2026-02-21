@@ -59,6 +59,17 @@ local function debug()
   end)
 end
 
+local function fix_all()
+  vim.lsp.buf.code_action({
+    apply = true,
+    context = {
+      only = { "source.fixAll" },
+      diagnostics = {},
+    },
+  })
+end
+
 M.debug = debug
+M.fix_all = fix_all
 
 return M
