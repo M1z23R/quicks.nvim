@@ -36,7 +36,18 @@ local function run_npm_script()
   end)
 end
 
+local function remove_unused_imports()
+  vim.lsp.buf.code_action({
+    apply = true,
+    context = {
+      only = { "source.removeUnused.ts" },
+      diagnostics = {},
+    },
+  })
+end
+
 M.run = run_npm_script
 M.debug = debug
+M.remove_unused = remove_unused_imports
 
 return M
